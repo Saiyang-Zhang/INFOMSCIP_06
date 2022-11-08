@@ -46,6 +46,11 @@ bo_central_mean = bo_df.groupby("PID").mean()
 
 bo_central_mean.to_csv("bo_central_mean.csv")
 
+# Median
+bo_central_median = bo_df.groupby("PID").median()
+
+bo_central_median.to_csv("bo_central_median.csv")
+
 # Mode
 bo_central_mode = bo_df.groupby("PID").agg(lambda x: x.value_counts().index[0])
 
