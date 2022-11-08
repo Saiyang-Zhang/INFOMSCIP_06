@@ -1,17 +1,23 @@
-bo_central <- read.csv("bo_central.csv")
+bo_central <- read.csv("bo_central_mean.csv")
 
-bo_central_mat <- as.matrix(bo_central)
+
+PID <- bo_central["PID"][, 1]
+alien_hand <- bo_central["Alien_Hand"][, 1]
+matched_hand <- bo_central["Matched_Hand"][, 1]
+mismatched_hand <- bo_central["Mismatched_Hand"][, 1]
 
 # Part II Q3: Apply friedman test to the centralized BO data
-# View(friedman.test(bo_central_mat))
+bo_central_mat <- cbind(alien_hand, matched_hand, mismatched_hand)
+rownames(bo_central_mat) <- PID
+
+friedman_res <- friedman.test(bo_central_mat)
 
 # Part II Q3: Apply Wilcoxon test
-ailen_hand <- bo_central["Alien.Hand"]
-matched_hand <- bo_central["Matched.Hand"]
-mismatched_hand <- bo_central["Mismatched.Hand"]
 
-# View(wilcox.test(alien_hand[, 1], matched_hand[, 1]))
-# View(res <- wilcox.test(alien_hand[, 1], mismatched_hand[, 1]))
-# View(wilcox.test(matched_hand[, 1], mismatched_hand[, 1]))
+ah_mah_res <- wilcox.test(alien_hand, matched_hand)
+ah_mih_res <- wilcox.test(alien_hand, mismatched_hand)
+mah_mih_res <- wilcox.test(matched_hand, mismatched_hand)
+
+View(friedman_res)
 
 # Part
