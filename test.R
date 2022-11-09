@@ -7,7 +7,7 @@ bo_central_median <- read.csv("bo_central_median.csv")
 bo_central_mode <- read.csv("bo_central_mode.csv")
 
 # Change bo_central's value to see different results
-bo_central <- bo
+bo_central <- bo_central_mode
 
 pid <- bo_central["PID"][, 1]
 alien_hand <- bo_central["Alien_Hand"][, 1]
@@ -26,6 +26,6 @@ ah_mah_res <- wilcox.test(alien_hand, matched_hand)
 ah_mih_res <- wilcox.test(alien_hand, mismatched_hand)
 mah_mih_res <- wilcox.test(matched_hand, mismatched_hand)
 
-View(friedman_res)
+# Part III Q1
 
-# Part
+fisher_res
